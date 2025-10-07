@@ -35,18 +35,6 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 sudo usermod -aG docker $USER
 
 # ------------------------------
-# Instalação do Cloudflared
-# ------------------------------
-
-# Baixa e instala o pacote oficial Cloudflared
-CLOUDFLARED_VERSION=$(curl -s https://api.github.com/repos/cloudflare/cloudflared/releases/latest | grep tag_name | cut -d '"' -f 4)
-echo "📦 Instalando Cloudflared versão $CLOUDFLARED_VERSION"
-
-curl -L "https://github.com/cloudflare/cloudflared/releases/download/${CLOUDFLARED_VERSION}/cloudflared-linux-amd64.deb" -o cloudflared.deb
-sudo dpkg -i cloudflared.deb
-rm -f cloudflared.deb
-
-# ------------------------------
 # Testes de instalação
 # ------------------------------
 newgrp docker <<EONG
@@ -55,5 +43,4 @@ docker --version
 docker compose version
 EONG
 
-echo "✅ Cloudflared instalado com sucesso!"
-cloudflared --version
+
